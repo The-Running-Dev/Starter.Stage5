@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Windows.Input;
-using Starter.Data.Entities;
+
 using Starter.Framework.Clients;
 
 namespace Starter.Data.Commands
 {
     public class CatCommand : ICommand
     {
-        //public event EventHandler CanExecuteChanged;
+        private readonly Action _execute;
+
+        private readonly Predicate<object> _canExecute;
 
         protected IApiClient ApiClient { get; set; }
 
@@ -15,16 +17,7 @@ namespace Starter.Data.Commands
         {
             ApiClient = apiClient;
         }
-
-        //public virtual bool CanExecute(object parameter)
-        //{
-        //    return false;
-        //}
-
-        //public virtual void Execute(object parameter)
-        //{
-        //}
-
+        
         private event EventHandler CanExecuteChangedInternal;
 
         public CatCommand(Action execute)
@@ -73,9 +66,5 @@ namespace Starter.Data.Commands
         {
             return true;
         }
-
-        private readonly Action _execute;
-
-        private readonly Predicate<object> _canExecute;
     }
 }
