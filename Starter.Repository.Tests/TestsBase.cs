@@ -31,7 +31,7 @@ namespace Starter.Repository.Tests
 
             CatRepository = IocWrapper.Instance.GetService<ICatRepository>();
             
-            var settings = IocWrapper.Instance.GetService<Settings>();
+            var settings = IocWrapper.Instance.GetService<ISettings>();
             StorageAccount = CloudStorageAccount.Parse(settings.TableStorageConnectionString);
 
             var tableClient = StorageAccount.CreateCloudTableClient(new TableClientConfiguration());
